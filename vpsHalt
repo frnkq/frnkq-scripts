@@ -1,0 +1,5 @@
+#sudo virsh shutdown qBittorrent
+sudo virsh shutdown Emby
+#sudo virsh shutdown OpenMediaVault
+sudo virsh shutdown git
+sudo virsh shutdown LAMP

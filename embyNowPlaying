@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ARTIST= curl -s  -X GET "http://localhost:8096/emby/Sessions?api_key=fc036184b71642d899cf66be9e15a23d" -H  "accept: application/json" | jshon -Q -e "1" -e "NowPlayingItem" -e "AlbumArtist" -u | tr '\n' ' ' && echo "-" | tr '\n' ' '
+
+SONG= curl -s  -X GET "http://localhost:8096/emby/Sessions?api_key=fc036184b71642d899cf66be9e15a23d" -H  "accept: application/json" | jshon -Q -e "1" -e "NowPlayingItem" -e "Name" -u | tr '\n' ' '
+
+if [[ $ARTIST == "-" ]];
+then
+    echo "Not playing"
+else
+    echo "${ARTIST}${SONG}"
+fi

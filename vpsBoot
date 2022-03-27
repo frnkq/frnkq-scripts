@@ -1,0 +1,6 @@
+/bin/bash /home/frnkq/scripts/vpsPorts
+#sudo virsh start OpenMediaVault
+#sudo virsh start Emby
+#sudo virsh start qBittorrent
+sudo virsh start git
+#sudo virsh start LAMP

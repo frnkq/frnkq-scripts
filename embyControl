@@ -1,0 +1,47 @@
+#!/bin/bash
+
+API="fc036184b71642d899cf66be9e15a23d"
+SSID="d43dab7c0f446d55eaff503921e10728"
+
+ENDPOINT="http://localhost:8096/emby/Sessions/$SSID/Playing"
+
+next()
+{
+
+  COMMAND="NextTrack"
+  curl -X POST "{$ENDPOINT}/{$COMMAND}?api_key={$API}" -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"Command\":\"Stop\",\"SeekPositionTicks\":0,\"ControllingUserId\":\"string\"}"
+
+}
+
+prev()
+{
+
+  COMMAND="PreviousTrack"
+  curl -X POST "$ENDPOINT/$COMMAND?api_key=$API" -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"Command\":\"Stop\",\"SeekPositionTicks\":0,\"ControllingUserId\":\"string\"}"
+
+}
+
+playPause()
+{
+
+  COMMAND="PlayPause"
+  curl -X POST "$ENDPOINT/$COMMAND?api_key=$API" -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"Command\":\"Stop\",\"SeekPositionTicks\":0,\"ControllingUserId\":\"string\"}"
+}
+
+handleArgs()
+{
+  ARG=$1
+  if [ $ARG = -next ];then
+    next
+  elif [ $ARG = -prev ];then
+    prev
+  elif [ $ARG = -playPause ];then
+    playPause
+
+  fi
+
+  /home/frnkq/scripts/embyNowPlaying > nowPlayingInfo
+
+}
+
+handleArgs $1
